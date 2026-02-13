@@ -12,19 +12,28 @@
 
                 const phoneNumber = link.getAttribute('href').replace('callto:', '');
                 
-                // International Format Validation
-                // Strict: Must start with + and have 8-15 digits.
-                // Examples: +595981123456, +14155552671
-                const internationalRegex = /^\+\d{8,15}$/;
-
-                // Clean number for validation (remove spaces/dashes just in case they slipped in?)
-                // But callto: usually contains raw number. If attribute had spaces, they might be in href.
-                // Let's clean href first.
+                // Clean number for validation
                 const cleanNumber = phoneNumber.replace(/[\s\-\(\)]/g, '');
+                
+                let targetNumber = null;
+                let isValid = false;
 
-                if (internationalRegex.test(cleanNumber)) {
+                // 1. International Format Validation (e.g. +595...)
+                if (/^\+\d{8,15}$/.test(cleanNumber)) {
+                    targetNumber = cleanNumber.replace('+', '');
+                    isValid = true;
+                }
+                // 2. Paraguay Local Mobile Format (e.g. 0971374403 -> 595971374403)
+                // Logic: Starts with '09', is 10 digits long.
+                else if (/^09\d{8}$/.test(cleanNumber)) {
+                    // Remove leading '0' and prepend '595'
+                    targetNumber = '595' + cleanNumber.substring(1);
+                    isValid = true;
+                }
+
+                if (isValid && targetNumber) {
                     const whatsappLink = document.createElement('a');
-                    whatsappLink.href = `https://wa.me/${cleanNumber.replace('+', '')}`;
+                    whatsappLink.href = `https://wa.me/${targetNumber}`;
                     whatsappLink.target = '_blank';
                     whatsappLink.className = 'whatsapp-link ml-2 inline-flex items-center justify-center rounded-md p-1 text-green-600 hover:bg-green-50 dark:text-green-400 dark:hover:bg-gray-800 transition-all';
                     whatsappLink.title = 'Chat on WhatsApp';

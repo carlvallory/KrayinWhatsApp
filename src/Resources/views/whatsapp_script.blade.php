@@ -41,7 +41,7 @@
                     
                     // No inner HTML needed as icon-call is a font class
                     whatsappLink.innerHTML = '';
-                    `;
+
 
                     // Append after the link
                     link.parentNode.insertBefore(whatsappLink, link.nextSibling);

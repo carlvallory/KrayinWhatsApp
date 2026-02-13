@@ -1,0 +1,25 @@
+{
+    "name": "carlvallory/krayin-whatsapp",
+    "description": "WhatsApp Integration for Krayin CRM",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Vallory",
+            "email": "carlvallory@gmail.com"
+        }
+    ],
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "CarlVallory\\KrayinWhatsApp\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "CarlVallory\\KrayinWhatsApp\\Providers\\KrayinWhatsAppServiceProvider"
+            ]
+        }
+    }
+}

@@ -35,7 +35,9 @@
                     const whatsappLink = document.createElement('a');
                     whatsappLink.href = `https://wa.me/${targetNumber}`;
                     whatsappLink.target = '_blank';
-                    whatsappLink.className = 'whatsapp-link ml-2 inline-flex items-center justify-center rounded-md p-1 text-green-600 hover:bg-green-50 dark:text-green-400 dark:hover:bg-gray-800 transition-all';
+                    // Style adapted from user request: Rounded full, 36x36px (h-9 w-9), centered.
+                    // Changed cyan to green for WhatsApp branding.
+                    whatsappLink.className = 'whatsapp-link ml-2 flex h-9 min-h-9 w-9 min-w-9 items-center justify-center rounded-full text-xl bg-green-200 text-green-800 dark:!text-green-800 hover:bg-green-300 transition-all';
                     whatsappLink.title = 'Chat on WhatsApp';
                     
                     // WhatsApp Icon SVG (Simple path)

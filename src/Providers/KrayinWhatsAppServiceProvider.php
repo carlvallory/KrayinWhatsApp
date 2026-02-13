@@ -28,6 +28,11 @@ class KrayinWhatsAppServiceProvider extends ServiceProvider
         Event::listen('admin.layout.head.after', function($viewRenderEventManager) {
             $viewRenderEventManager->addTemplate('krayin-whatsapp::whatsapp_script');
         });
+
+        // 4. Inject WhatsApp Action Button to Person Profile
+        Event::listen('admin.contact.persons.view.actions.after', function($viewRenderEventManager) {
+            $viewRenderEventManager->addTemplate('krayin-whatsapp::components.actions.whatsapp');
+        });
     }
 
     /**
